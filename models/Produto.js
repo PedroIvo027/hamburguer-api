@@ -4,14 +4,24 @@ import sequelize from "./Database.js";
 export default class Produto extends Model {
   static associate(models) {
     Produto.belongsTo(models.Categoria, {
-      foreignKey: 'categoriaId',
+      foreignKey: 'categoria_id',
       as: 'categoria'
     });
   }
 }
-Produto.init({
-  nome: { type: DataTypes.STRING, allowNull: false },
-  descricao: { type: DataTypes.TEXT },
+Produto.init(
+{
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  nome: { 
+    type: DataTypes.STRING, 
+    allowNull: false },
+  descricao: {
+     type: DataTypes.TEXT 
+},
   preco: {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
@@ -21,8 +31,9 @@ Produto.init({
     type: DataTypes.BOOLEAN,
     defaultValue: true
   },
-  categoriaId: { type: DataTypes.INTEGER }
-}, {
+  categoria_id: { type: DataTypes.INTEGER }
+}, 
+{
   sequelize,
   modelName: 'Produto',
   tableName: 'produtos',

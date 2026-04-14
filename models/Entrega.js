@@ -1,4 +1,4 @@
-import sequelize from "./Database";
+import sequelize from "./Database.js";
 import { DataTypes, Model } from "sequelize";
 
 export default class Entrega extends Model {
@@ -6,15 +6,20 @@ export default class Entrega extends Model {
         Entrega.belongsTo(models.Pedido, {
             foreignKey: 'pedido_id',
             as: 'pedido'
-        })
+        });
     }
 }
 
 Entrega.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+
     pedido_id :{
         type : DataTypes.INTEGER,
         allowNull : false,
-        primaryKey : true
     },
     codigo_rastreio:{
         type: DataTypes.STRING,
@@ -25,9 +30,11 @@ Entrega.init({
         type: DataTypes.STRING,
         allowNull : false
     }
-},sequelize,
+},
 {
+    sequelize,
+    modelName: 'Entrega',
     tableName : 'entregas',
     timestamps : true, // criar os campos deleteAt e updatedAt
     paranoid : true
-})
+});

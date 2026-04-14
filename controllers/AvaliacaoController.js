@@ -17,6 +17,11 @@ export default{
         const avaliacao = await Avaliacao.create({ nota, pedidoId});
 
         return res.json(avaliacao);
+    },
+
+    async index(req, res) {
+        const avaliacoes = await Avaliacao.findAll();
+        return res.json(avaliacoes);
     }
 };
 

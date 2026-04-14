@@ -4,7 +4,7 @@ import sequelize from "./Database.js";
 export default class Avaliacao extends Model{
     static associate(models){
         Avaliacao.belongsTo(models.Pedido,{
-            foreignKey: 'pedidoId',
+            foreignKey: 'pedido_id',
             as: 'pedido'
         });
     }
@@ -25,7 +25,7 @@ Avaliacao.init(
                 max: 5
             }
         },
-        pedidoId: {
+        pedido_id: {
             type: DataTypes.INTEGER,
             allowNull:false
         }
