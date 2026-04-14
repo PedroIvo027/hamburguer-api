@@ -5,6 +5,6 @@ const router = Router();
 
 router.post("/", AvaliacaoController.create);
 
-router.get("/", AvaliacaoController.index);
+router.get("/", AvaliacaoController.findAll);
 
 export default router;

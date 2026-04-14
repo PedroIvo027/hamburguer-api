@@ -3,12 +3,12 @@ import { DataTypes, Model } from "sequelize";
 
 export default class Pedido extends Model{
     static associate(models){
-        Pedido.hasOne(models.Entrega, {
+        this.hasOne(models.Entrega, {
             foreignKey: 'pedido_id',
             as: 'entrega'
         });
 
-        Pedido.hasMany(models.Avaliacao, {
+        this.hasMany(models.Avaliacao, {
             foreignKey: 'pedido_id',
             as: 'avaliacoes'
         });
@@ -37,6 +37,7 @@ Pedido.init({
 }, 
 {
     sequelize,
+    modelName: 'Pedido',
     tableName : 'pedidos',
     timestamps : true, // criar os campos deleteAt e updatedAt
     paranoid : true

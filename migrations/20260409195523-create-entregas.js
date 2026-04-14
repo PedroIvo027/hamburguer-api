@@ -4,10 +4,15 @@
 export default {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('entregas', {
+      id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+      },
       pedido_id :{
         type : Sequelize.INTEGER,
         allowNull : false,
-        primaryKey : true,
         references : { model : 'pedidos', key : 'id', onDelete : 'CASCADE' , onUpdate : 'CASCADE' }
       },
       codigo_rastreio:{

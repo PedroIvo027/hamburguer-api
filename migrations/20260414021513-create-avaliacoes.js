@@ -12,7 +12,7 @@ export default {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      pedidoId: {
+      pedido_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -22,8 +22,14 @@ export default {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE
+      createdAt: { 
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      updatedAt: { 
+        type: Sequelize.DATE,
+        allowNull: false
+      }
     });
   },
   async down(queryInterface){

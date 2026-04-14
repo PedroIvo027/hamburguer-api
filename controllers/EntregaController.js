@@ -1,9 +1,12 @@
-import Entrega from '../models/Entrega.js';
+import models from '../models/index.js';
+const {Entrega} = models;
 
 class EntregaController {
     async index(req, res) {
         try {
-            const entregas = await Entrega.findAll();
+            const entregas = await Entrega.findAll({
+                include: [{ association: 'pedido'}]
+            });
             res.status(200).json(entregas);
         } catch (error) {
             res.status(500).json({ error: error.message });

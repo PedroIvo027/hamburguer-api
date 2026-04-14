@@ -1,6 +1,6 @@
-import Pedido from "../models/Pedido.js";
-import Avaliacao from "../models/Avaliacao.js";
-import Entrega from "../models/Entrega.js";
+import models from "../models/index.js";
+
+const{Pedido, Entrega, Avaliacao} = models;
 
 const PedidoController = {
     create : async (req, res) =>{
@@ -16,8 +16,8 @@ const PedidoController = {
         try{
             const pedidos = await Pedido.findAll({
                 include: [
-                    {model: Entrega},
-                    {model: Avaliacao}
+                    {model: Entrega, as: 'entrega'},
+                    {model: Avaliacao, as: 'avaliacoes'}
                 ]
             });
             if (pedidos.length === 0){
