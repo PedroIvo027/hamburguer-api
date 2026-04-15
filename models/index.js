@@ -1,4 +1,5 @@
-import  Categoria  from './Categoria.js';
+import sequelize from './Database.js';
+import Categoria  from './Categoria.js';
 import Produto from './Produto.js';
 import Pedido from './Pedido.js';
 import Entrega from './Entrega.js';
@@ -11,10 +12,15 @@ const models = {
   Entrega, 
   Avaliacao};
 
+  Object.values(models).forEach(model => {
+  if (typeof model.init === 'function' ){}
+});
+
 Object.values(models).forEach(model => {
-  if (model.associate) {
+  if (typeof model.associate === 'function') {
     model.associate(models);
   }
 });
 
+export {sequelize};
 export default models;

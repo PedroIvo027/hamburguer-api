@@ -2,7 +2,7 @@ import models from '../models/index.js';
 const { Categoria, Produto} = models;
 
  const CategoriaController = {
-  Create: async (req, res) => {
+  create: async (req, res) => {
     try {
       const categoria = await Categoria.create(req.body);
       res.status(201).json(categoria);
@@ -17,7 +17,7 @@ const { Categoria, Produto} = models;
         include: [{ model: Produto, as: 'produtos'}]
       });
       if (categorias.length === 0) {
-        throw new Error('Nenhuma categoria encontrada');
+        return res.status(200).json([]);
       }
       res.status(200).json(categorias);
     }catch (error) {
